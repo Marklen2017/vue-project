@@ -1,16 +1,20 @@
 <template>
-    <form @submit="OnSubmit" class="add-form">
+    <form @submit="onSubmit" class="add-form">
         <div class="form-control">
             <label>Task</label>
             <input type="text" v-model="text" name="text"
             placeholder="Add Task" />
         </div>
-        <div class="from-control">
-            <label>Day & Time</label>
-            <input type="text" v-model="day" name="day" 
-            placeholder="Add Day & Time" />
-        </div>
         <div class="form-control">
+            <label>Day & Time</label>
+            <input
+                type="text"
+                v-model="day"
+                name="day" 
+                placeholder="Add Day & Time"
+            />
+        </div>
+        <div class="form-control form-control-check">
             <label>Set Reminder</label>
             <input type="checkbox" v-model="reminder" name="reminder" />
         </div>
@@ -38,14 +42,13 @@ export default {
                 return
             }
             const newTask = {
-                id: Math.floor(Math.randim() * 100000),
+                id: Math.floor(Math.random() * 100000),
                 text: this.text,
                 day: this.day,
                 reminder: this.reminder
             }
 
-            console.log(newTask)
-
+            this.$emit('add-task', newTask)
             this.text = ''
             this.day = ''
             this.reminder = false
@@ -68,7 +71,7 @@ export default {
        
     }
     .form-control input {
-        /* width: 100%; */
+        width: 100%;
         height: 40px;
         margin: 5px;
         padding: 3px 7px;
