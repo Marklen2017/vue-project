@@ -14,7 +14,6 @@ export default {
     props: {
         task: Object,
     },
-   
 }
 </script>
 
